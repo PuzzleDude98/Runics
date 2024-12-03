@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.pd98.Runics"
+          "net.pd98.runics.Runics"
 		],
 		"client": [
 			"net.pd98.RunicsClient"
 		],
 		"fabric-datagen": [
-			"net.pd98.RunicsDataGenerator"
+          "net.pd98.runics.RunicsDataGenerator"
 		]
 	},
 	"mixins": [
