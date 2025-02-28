@@ -1,8 +1,7 @@
-package net.pd98.runics;
+package net.pd98;
 
 import net.fabricmc.api.ModInitializer;
-import net.pd98.runics.block.ModBlocks;
-import net.pd98.runics.entity.ModBlockEntities;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +20,5 @@ public class Runics implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
-
-		ModBlocks.registerModBlocks();
-		ModBlockEntities.registerModBlockEntities();
-
-
 	}
 }

@@ -2,10 +2,10 @@
 	"schemaVersion": 1,
 	"id": "runics",
 	"version": "${version}",
-	"name": "Runics",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "runics",
+	"description": "Take 3, magic runes!",
 	"authors": [
-		"Me!"
+		"Puzzle_Dude98"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -16,13 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "net.pd98.runics.Runics"
+			"net.pd98.Runics"
 		],
 		"client": [
 			"net.pd98.RunicsClient"
-		],
-		"fabric-datagen": [
-          "net.pd98.runics.RunicsDataGenerator"
 		]
 	},
 	"mixins": [
@@ -33,8 +30,8 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.21",
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
