@@ -19,7 +19,7 @@ public class ModBlocks {
     public static final Block RUNE_BLOCK = register(
             "rune",
             RuneBlock::new,
-            AbstractBlock.Settings.create(),
+            AbstractBlock.Settings.create().noCollision(),
             true
     );
 

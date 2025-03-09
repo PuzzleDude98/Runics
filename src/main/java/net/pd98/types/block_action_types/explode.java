@@ -16,7 +16,7 @@ public class explode extends BlockAction{
 
     @Override
     public void trigger(World world, BlockPos pos) {
-        world.createExplosion(null, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, power, create_fire, World.ExplosionSourceType.TNT );
+        world.createExplosion(null, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, power, create_fire, World.ExplosionSourceType.NONE);
     }
 
     @Override
