@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -55,18 +56,24 @@ public class RuneBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!(world.getBlockEntity(pos) instanceof RuneBlockEntity runeBlockEntity) || !stack.isOf(Items.STICK)) {
+        if (!(world.getBlockEntity(pos) instanceof RuneBlockEntity runeBlockEntity) || !(stack.isOf(Items.STICK) || stack.isOf(Items.BLAZE_ROD))) {
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }
 
-        try {
-            Path filePath = FabricLoader.getInstance().getConfigDir().resolve("runics/data.json");
-            runeBlockEntity.setRuneData(JsonParser.parseString(Files.readString(filePath)));
-            player.sendMessage(Text.literal("Written!"),true);
-            return ActionResult.SUCCESS;
-        } catch (Exception e) {
-            Runics.LOGGER.error(e.toString());
-            return ActionResult.FAIL;
+        if (stack.isOf(Items.STICK)) {
+            try {
+                Path filePath = FabricLoader.getInstance().getConfigDir().resolve("runics/data.json");
+                runeBlockEntity.setRuneData(JsonParser.parseString(Files.readString(filePath)).getAsJsonObject());
+                player.sendMessage(Text.literal("Written!"), true);
+                runeBlockEntity.parseJson();
+            } catch (Exception e) {
+                Runics.LOGGER.error(e.toString());
+                return ActionResult.FAIL;
+            }
+        } else if (stack.isOf(Items.BLAZE_ROD)) {
+            runeBlockEntity.trigger(player);
         }
+
+        return ActionResult.SUCCESS;
     }
 }
