@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.pd98.Runics;
 import net.pd98.TypeMaps;
 import net.pd98.block.ModBlockEntities;
+import net.pd98.types.ParsableObject;
 import net.pd98.types.Rune;
 
 import java.util.Objects;
@@ -54,19 +55,19 @@ public class RuneBlockEntity extends BlockEntity {
 
     public void parseJson() {
         try {
-
-            String key = runeData.get("type").getAsString();
-
-            Class<? extends Rune> klass = TypeMaps.runeTypes.get(key);
+            Class<? extends Rune> klass = TypeMaps.runeTypes.get(runeData.get("type").getAsString());
             runeObject = klass.getDeclaredConstructor().newInstance();
             runeObject.parseJson(runeData);
-
         } catch (Exception e) {
             Runics.LOGGER.error(e.toString());
         }
     }
 
     public void trigger(PlayerEntity player) {
-        runeObject.trigger(this.getWorld(), this.pos, player);
+        try {
+            runeObject.trigger(this.getWorld(), this.pos, player);
+        } catch (Exception e) {
+            Runics.LOGGER.error(e.toString());
+        }
     }
 }

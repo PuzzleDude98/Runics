@@ -18,7 +18,9 @@ public class action_on_rune_use extends Rune {
     private BlockAction blockAction;
 
     public void trigger(World world, BlockPos pos, PlayerEntity player) {
-        blockAction.trigger(world, pos);
+        if (blockAction != null) {
+            blockAction.trigger(world, pos);
+        }
     }
 
     @Override
