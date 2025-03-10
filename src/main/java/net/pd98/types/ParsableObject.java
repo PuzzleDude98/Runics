@@ -13,6 +13,10 @@ public abstract class ParsableObject {
             try {
                 JsonObject objectJson = json.getAsJsonObject(key);
                 Class<? extends ParsableObject> klass = type.get(objectJson.get("type").getAsString());
+                if (klass == null) {
+                    Runics.LOGGER.warn("Unknown " + key + " type: " + objectJson.get("type").getAsString());
+                    return null;
+                }
                 ParsableObject object = klass.getDeclaredConstructor().newInstance();
                 object.parseJson(objectJson);
                 return object;

@@ -6,25 +6,40 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pd98.Runics;
 import net.pd98.TypeMaps;
-import net.pd98.types.ParsableObject;
 import net.pd98.types.Rune;
 import net.pd98.types.block_action_types.BlockAction;
+import net.pd98.types.entity_action_types.EntityAction;
+import net.pd98.types.entity_condition_types.EntityCondition;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Type;
 
 public class action_on_rune_use extends Rune {
-    private BlockAction blockAction;
+    private BlockAction block_action;
+    private EntityAction entity_action;
+    private EntityCondition entity_condition;
 
     public void trigger(World world, BlockPos pos, PlayerEntity player) {
-        if (blockAction != null) {
-            blockAction.trigger(world, pos);
+        super.trigger(world, pos, player);
+
+        if (entity_condition != null && !entity_condition.evaluate(world, player)) {
+            return;
+        }
+
+        if (block_action != null) {
+            block_action.trigger(world, pos);
+        }
+
+        if (entity_action != null) {
+            entity_action.trigger(world, player);
         }
     }
 
     @Override
     public void parseJson(JsonObject json) {
-        blockAction = (BlockAction) parseObject(json, "block_action", TypeMaps.blockActionTypes);
+        block_action = (BlockAction) parseObject(json, "block_action", TypeMaps.blockActionTypes);
+        entity_action = (EntityAction) parseObject(json, "entity_action", TypeMaps.entityActionTypes);
+        entity_condition = (EntityCondition) parseObject(json, "entity_condition", TypeMaps.entityConditionTypes);
+
+        super.parseJson(json);
     }
 }
