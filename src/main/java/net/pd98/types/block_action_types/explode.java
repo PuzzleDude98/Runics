@@ -8,7 +8,7 @@ import net.pd98.types.data_types.DestructionType;
 
 import java.util.Optional;
 
-public class explode extends BlockAction{
+public class explode extends BlockAction {
     public float power;
     public DestructionType destruction_type = DestructionType.BREAK;
 
