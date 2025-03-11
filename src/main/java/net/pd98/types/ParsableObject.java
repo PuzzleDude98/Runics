@@ -2,6 +2,7 @@ package net.pd98.types;
 
 import com.google.gson.JsonObject;
 import net.pd98.Runics;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
@@ -26,4 +27,22 @@ public abstract class ParsableObject {
         }
         return null;
     }
+
+    public static Object parseOptionalValue(JsonObject json, String key, @Nullable Object current) {
+        if (!json.has(key)) {
+            return current;
+        }
+
+        return switch (current) {
+            case Integer i -> json.get(key).getAsInt();
+            case Float f -> json.get(key).getAsFloat();
+            case String s -> json.get(key).getAsString();
+            case Boolean b -> json.get(key).getAsBoolean();
+            default -> {
+                Runics.LOGGER.warn("Tried to parse variable of unknown type: " + current.getClass());
+                yield current;
+            }
+        };
+    }
+
 }

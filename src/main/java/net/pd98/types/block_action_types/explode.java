@@ -23,7 +23,7 @@ public class explode extends BlockAction {
     @Override
     public void parseJson(JsonObject json) {
         power = json.get("power").getAsFloat();
-        destruction_type = json.has("destruction_type") ? DestructionType.fromString(json.get("destruction_type").getAsString()) : destruction_type;
-        create_fire = json.has("create_fire") ? json.get("create_fire").getAsBoolean() : create_fire;
+        destruction_type = DestructionType.fromString((String) parseOptionalValue(json, "destruction_type", destruction_type.getValue()));
+        create_fire = (boolean) parseOptionalValue(json, "create_fire", create_fire);
     }
 }

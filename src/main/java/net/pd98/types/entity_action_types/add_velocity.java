@@ -21,7 +21,7 @@ public class add_velocity extends EntityAction{
     @Override
     public void parseJson(JsonObject json) {
         x = json.has("x") ? json.get("x").getAsFloat() : x;
-        y = json.has("y") ? json.get("y").getAsFloat() : y;
+        y = (float) parseOptionalValue(json, "y", y);
         z = json.has("z") ? json.get("z").getAsFloat() : z;
 
         client = json.has("client") ? json.get("client").getAsBoolean() : client;
@@ -38,7 +38,6 @@ public class add_velocity extends EntityAction{
         }
 
         if (set) {
-            Runics.LOGGER.debug("Setting");
             entity.setVelocity(x,y,z);
         } else {
             entity.addVelocity(x,y,z);
