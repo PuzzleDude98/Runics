@@ -2,8 +2,11 @@ package net.pd98.types.entity_action_types;
 
 import com.google.gson.JsonObject;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.pd98.Runics;
 
 public class add_velocity extends EntityAction{
 
@@ -35,6 +38,7 @@ public class add_velocity extends EntityAction{
         }
 
         if (set) {
+            Runics.LOGGER.debug("Setting");
             entity.setVelocity(x,y,z);
         } else {
             entity.addVelocity(x,y,z);

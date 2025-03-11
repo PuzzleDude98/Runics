@@ -30,7 +30,7 @@ public class TypeMaps {
 
         blockActionTypes.put("explode", explode.class);
 
-        entityActionTypes.put("add_velocoty", add_velocity.class);
+        entityActionTypes.put("add_velocity", add_velocity.class);
 
         entityConditionTypes.put("on_fire", on_fire.class);
     }

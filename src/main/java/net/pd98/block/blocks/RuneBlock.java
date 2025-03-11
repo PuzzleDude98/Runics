@@ -61,7 +61,7 @@ public class RuneBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient() || !(world.getBlockEntity(pos) instanceof RuneBlockEntity runeBlockEntity) || !(stack.isOf(Items.STICK) || stack.isOf(Items.BLAZE_ROD))) {
+        if (!(world.getBlockEntity(pos) instanceof RuneBlockEntity runeBlockEntity) || !(stack.isOf(Items.STICK) || stack.isOf(Items.BLAZE_ROD))) {
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }
 
