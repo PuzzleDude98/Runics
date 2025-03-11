@@ -10,10 +10,10 @@ import net.pd98.types.data_types.DestructionType;
 import java.util.Optional;
 
 public class explode extends BlockAction {
-    public float power;
-    public DestructionType destruction_type = DestructionType.BREAK;
+    private float power;
+    private DestructionType destruction_type = DestructionType.BREAK;
 
-    public boolean create_fire = false;
+    private boolean create_fire = false;
 
     @Override
     public void trigger(World world, BlockPos pos) {
