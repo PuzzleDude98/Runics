@@ -8,6 +8,7 @@ import net.pd98.types.entity_action_types.EntityAction;
 import net.pd98.types.entity_action_types.add_velocity;
 import net.pd98.types.entity_condition_types.EntityCondition;
 import net.pd98.types.entity_condition_types.on_fire;
+import net.pd98.types.entity_condition_types.time_of_day;
 import net.pd98.types.rune_types.action_on_rune_use;
 
 import java.util.HashMap;
@@ -33,6 +34,7 @@ public class TypeMaps {
         entityActionTypes.put("add_velocity", add_velocity.class);
 
         entityConditionTypes.put("on_fire", on_fire.class);
+        entityConditionTypes.put("time_of_day", time_of_day.class);
     }
 
     public static void initialize() {
