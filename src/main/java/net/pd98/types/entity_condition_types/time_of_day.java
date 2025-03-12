@@ -3,18 +3,21 @@ package net.pd98.types.entity_condition_types;
 import com.google.gson.JsonObject;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import net.pd98.types.data_types.Comparison;
 
 public class time_of_day extends EntityCondition{
 
     private int compare_to;
+    private Comparison comparison;
 
     @Override
     public void parseJson(JsonObject json) {
         compare_to = json.get("compare_to").getAsInt();
+        comparison = new Comparison((String) parseOptionalValue(json, "comparison", "=="));
     }
 
     @Override
     public boolean evaluate(World world, Entity entity) {
-        return (world.getTimeOfDay() == compare_to);
+        return comparison.evaluate((int) world.getTimeOfDay(), compare_to);
     }
 }
