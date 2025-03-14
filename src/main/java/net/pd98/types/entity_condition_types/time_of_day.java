@@ -14,10 +14,12 @@ public class time_of_day extends EntityCondition{
     public void parseJson(JsonObject json) {
         compare_to = json.get("compare_to").getAsInt();
         comparison = new Comparison((String) parseOptionalValue(json, "comparison", "=="));
+
+        super.parseJson(json);
     }
 
     @Override
-    public boolean evaluate(World world, Entity entity) {
+    public boolean evaluateBase(World world, Entity entity) {
         return comparison.evaluate((int) world.getTimeOfDay(), compare_to);
     }
 }

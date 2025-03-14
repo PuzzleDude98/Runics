@@ -23,10 +23,12 @@ public class andEntity extends EntityCondition{
                 Runics.LOGGER.warn("Non object element found in meta condition: " + object.toString());
             }
         }
+
+        super.parseJson(json);
     }
 
     @Override
-    public boolean evaluate(World world, Entity entity) {
+    public boolean evaluateBase(World world, Entity entity) {
         for (EntityCondition condition : conditions) {
             if (!condition.evaluate(world, entity)) {
                 return false;
