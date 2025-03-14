@@ -7,17 +7,18 @@ import net.minecraft.world.World;
 import net.pd98.Runics;
 import net.pd98.TypeMaps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class andEntity extends EntityCondition{
 
-    private List<EntityCondition> conditions;
+    private List<EntityCondition> conditions = new ArrayList<>();
 
     @Override
     public void parseJson(JsonObject json) {
         for (JsonElement object : json.get("conditions").getAsJsonArray()) {
             try {
-                parseObject((JsonObject) object, TypeMaps.entityConditionTypes);
+                conditions.add((EntityCondition) parseObject((JsonObject) object, TypeMaps.entityConditionTypes));
             } catch (Exception e) {
                 Runics.LOGGER.warn("Non object element found in meta condition: " + object.toString());
             }
@@ -26,6 +27,11 @@ public class andEntity extends EntityCondition{
 
     @Override
     public boolean evaluate(World world, Entity entity) {
-        return false;
+        for (EntityCondition condition : conditions) {
+            if (!condition.evaluate(world, entity)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
