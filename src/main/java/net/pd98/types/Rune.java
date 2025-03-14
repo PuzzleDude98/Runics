@@ -17,7 +17,7 @@ public abstract class Rune extends ParsableObject{
     }
 
     public void trigger(World world, BlockPos pos, PlayerEntity player) {
-        if (condition != null && !condition.evaluate(world, pos)) {
+        if (condition != null && !condition.evaluateBase(world, pos)) {
             return;
         }
     };

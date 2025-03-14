@@ -22,7 +22,7 @@ public class offset extends BlockCondition {
     }
 
     @Override
-    public boolean evaluate(World world, BlockPos pos) {
-        return condition.evaluate(world, pos.add(x,y,z));
+    public boolean evaluateBase(World world, BlockPos pos) {
+        return condition.evaluateBase(world, pos.add(x,y,z));
     }
 }

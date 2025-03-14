@@ -6,11 +6,6 @@ import net.minecraft.world.World;
 
 public class on_fire extends EntityCondition{
     @Override
-    public void parseJson(JsonObject json) {
-        super.parseJson(json);
-    }
-
-    @Override
     public boolean evaluateBase(World world, Entity entity) {
         return entity.isOnFire();
     }
