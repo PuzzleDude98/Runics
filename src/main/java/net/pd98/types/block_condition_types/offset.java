@@ -14,7 +14,7 @@ public class offset extends BlockCondition {
 
     @Override
     public void parseJson(JsonObject json) {
-        condition = (BlockCondition) parseObject(json, "condition", TypeMaps.blockConditionTypes);
+        condition = (BlockCondition) parseOptionalObject(json, "condition", TypeMaps.blockConditionTypes);
 
         x = (int) parseOptionalValue(json, "x", x);
         y = (int) parseOptionalValue(json, "y", y);

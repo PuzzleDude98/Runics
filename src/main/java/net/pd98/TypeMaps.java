@@ -7,6 +7,7 @@ import net.pd98.types.block_condition_types.BlockCondition;
 import net.pd98.types.entity_action_types.EntityAction;
 import net.pd98.types.entity_action_types.add_velocity;
 import net.pd98.types.entity_condition_types.EntityCondition;
+import net.pd98.types.entity_condition_types.andEntity;
 import net.pd98.types.entity_condition_types.on_fire;
 import net.pd98.types.entity_condition_types.time_of_day;
 import net.pd98.types.rune_types.action_on_rune_use;
@@ -35,6 +36,7 @@ public class TypeMaps {
 
         entityConditionTypes.put("on_fire", on_fire.class);
         entityConditionTypes.put("time_of_day", time_of_day.class);
+        entityConditionTypes.put("and", andEntity.class);
     }
 
     public static void initialize() {

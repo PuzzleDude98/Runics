@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pd98.TypeMaps;
-import net.pd98.types.block_action_types.BlockAction;
 import net.pd98.types.block_condition_types.BlockCondition;
 
 public abstract class Rune extends ParsableObject{
@@ -14,7 +13,7 @@ public abstract class Rune extends ParsableObject{
 
     @Override
     public void parseJson(JsonObject json) {
-        condition = (BlockCondition) parseObject(json, "condition", TypeMaps.blockConditionTypes);
+        condition = (BlockCondition) parseOptionalObject(json, "condition", TypeMaps.blockConditionTypes);
     }
 
     public void trigger(World world, BlockPos pos, PlayerEntity player) {

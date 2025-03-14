@@ -54,13 +54,7 @@ public class RuneBlockEntity extends BlockEntity {
     }
 
     public void parseJson() {
-        try {
-            Class<? extends Rune> klass = TypeMaps.runeTypes.get(runeData.get("type").getAsString());
-            runeObject = klass.getDeclaredConstructor().newInstance();
-            runeObject.parseJson(runeData);
-        } catch (Exception e) {
-            Runics.LOGGER.error(e.toString());
-        }
+        runeObject = (Rune) ParsableObject.parseObject(runeData, TypeMaps.runeTypes);
     }
 
     public void trigger(PlayerEntity player) {
