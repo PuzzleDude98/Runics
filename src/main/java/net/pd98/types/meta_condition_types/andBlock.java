@@ -1,24 +1,25 @@
-package net.pd98.types.entity_condition_types;
+package net.pd98.types.meta_condition_types;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.entity.Entity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pd98.Runics;
 import net.pd98.TypeMaps;
+import net.pd98.types.block_condition_types.BlockCondition;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class andEntity extends EntityCondition{
+public class andBlock extends BlockCondition {
 
-    private List<EntityCondition> conditions = new ArrayList<>();
+    private List<BlockCondition> conditions = new ArrayList<>();
 
     @Override
     public void parseJson(JsonObject json) {
         for (JsonElement object : json.get("conditions").getAsJsonArray()) {
             try {
-                conditions.add((EntityCondition) parseObject((JsonObject) object, TypeMaps.entityConditionTypes));
+                conditions.add((BlockCondition) parseObject((JsonObject) object, TypeMaps.blockConditionTypes));
             } catch (Exception e) {
                 Runics.LOGGER.warn("Non object element found in meta condition: " + object.toString());
             }
@@ -28,9 +29,9 @@ public class andEntity extends EntityCondition{
     }
 
     @Override
-    public boolean evaluateBase(World world, Entity entity) {
-        for (EntityCondition condition : conditions) {
-            if (!condition.evaluate(world, entity)) {
+    public boolean evaluateBase(World world, BlockPos pos) {
+        for (BlockCondition condition : conditions) {
+            if (!condition.evaluate(world, pos)) {
                 return false;
             }
         }
