@@ -4,6 +4,8 @@ import net.pd98.types.Rune;
 import net.pd98.types.block_action_types.BlockAction;
 import net.pd98.types.block_action_types.explode;
 import net.pd98.types.block_condition_types.BlockCondition;
+import net.pd98.types.block_condition_types.block;
+import net.pd98.types.block_condition_types.offset;
 import net.pd98.types.entity_action_types.EntityAction;
 import net.pd98.types.entity_action_types.add_velocity;
 import net.pd98.types.entity_condition_types.EntityCondition;
@@ -32,15 +34,14 @@ public class TypeMaps {
 
         blockActionTypes.put("explode", explode.class);
 
+        blockConditionTypes.put("offset", offset.class);
+        blockConditionTypes.put("block", block.class);
+
         entityActionTypes.put("add_velocity", add_velocity.class);
 
         entityConditionTypes.put("on_fire", on_fire.class);
         entityConditionTypes.put("time_of_day", time_of_day.class);
         entityConditionTypes.put("and", andEntity.class);
-    }
-
-    public static void initialize() {
-        Runics.LOGGER.info("Initializing type dictionaries!");
     }
 
 }

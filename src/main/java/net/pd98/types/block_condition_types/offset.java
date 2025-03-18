@@ -19,10 +19,12 @@ public class offset extends BlockCondition {
         x = (int) parseOptionalValue(json, "x", x);
         y = (int) parseOptionalValue(json, "y", y);
         z = (int) parseOptionalValue(json, "z", z);
+
+        super.parseJson(json);
     }
 
     @Override
     public boolean evaluateBase(World world, BlockPos pos) {
-        return condition.evaluateBase(world, pos.add(x,y,z));
+        return condition.evaluate(world, pos.add(x,y,z));
     }
 }

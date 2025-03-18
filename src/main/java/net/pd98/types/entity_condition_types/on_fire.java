@@ -1,6 +1,5 @@
 package net.pd98.types.entity_condition_types;
 
-import com.google.gson.JsonObject;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 

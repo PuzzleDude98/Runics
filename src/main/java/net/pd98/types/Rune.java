@@ -16,9 +16,9 @@ public abstract class Rune extends ParsableObject{
         condition = (BlockCondition) parseOptionalObject(json, "condition", TypeMaps.blockConditionTypes);
     }
 
-    public void trigger(World world, BlockPos pos, PlayerEntity player) {
-        if (condition != null && !condition.evaluateBase(world, pos)) {
-            return;
+    public void trigger(World world, BlockPos pos, PlayerEntity player) throws Exception {
+        if (condition != null && !condition.evaluate(world, pos)) {
+            throw new Exception("Block condition not met!");
         }
     };
 }

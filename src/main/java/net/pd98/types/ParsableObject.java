@@ -3,8 +3,6 @@ package net.pd98.types;
 import com.google.gson.JsonObject;
 import net.pd98.Runics;
 import org.jetbrains.annotations.Nullable;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 public abstract class ParsableObject {

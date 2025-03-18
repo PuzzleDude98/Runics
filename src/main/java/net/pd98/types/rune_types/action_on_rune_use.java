@@ -16,7 +16,11 @@ public class action_on_rune_use extends Rune {
     private EntityCondition entity_condition;
 
     public void trigger(World world, BlockPos pos, PlayerEntity player) {
-        super.trigger(world, pos, player);
+        try {
+            super.trigger(world, pos, player);
+        } catch (Exception ignored) {
+            return;
+        }
 
         if (entity_condition != null && !entity_condition.evaluate(world, player)) {
             return;
